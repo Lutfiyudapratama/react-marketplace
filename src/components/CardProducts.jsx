@@ -1,9 +1,11 @@
-import { useDispatch } from "react-redux"
-import { addToCart } from "../redux/cartSlice"
-import { addToCartProduct } from "../redux/productSlice"
+import { useDispatch, useSelector } from "react-redux"
+import { addToCart } from "../redux/productSlice"
+import { addToCartFromProduct } from "../redux/cartSlice"
+// import { addToCartProduct } from "../redux/productSlice"
 
 const CardProducts = ({ product }) => {
     const dispacth = useDispatch()
+    const products = useSelector(root => root?.product)
     return (
         <div className="col-lg-4">
             <div className="card" style={{ width: "18rem" }}>
@@ -17,8 +19,9 @@ const CardProducts = ({ product }) => {
                         type="button"
                         className="btn btn-success"
                         onClick={() => {
-                            dispacth(addToCart(product));
-                            dispacth(addToCartProduct(product));
+                            dispacth(addToCart(products?.data, product?.id));
+                            dispacth(addToCartFromProduct(product));
+                            // dispacth(addToCartProduct(product));
                         }}
 
 

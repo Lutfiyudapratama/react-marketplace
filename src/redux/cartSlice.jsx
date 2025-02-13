@@ -4,7 +4,7 @@ export const cartSlice = createSlice({
     name: "cart",
     initialState: [],
     reducers: {
-        addToCart: (state, payload) => {
+        addToCartFromProduct: (state, payload) => {
 
             const findProduct = state?.find(
                 (product) => product.id === payload?.payload.id
@@ -30,5 +30,5 @@ export const cartSlice = createSlice({
     }
 })
 
-export const { addToCart } = cartSlice.actions
+export const { addToCartFromProduct } = cartSlice.actions
 export default cartSlice.reducer

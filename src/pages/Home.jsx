@@ -9,10 +9,12 @@ import {
 } from "../assets"
 import Slider from "react-slick";
 import CardProducts from "../components/CardProducts";
-import { useSelector } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getproduct } from "../redux/productSlice";
 const Home = () => {
     const { product } = useSelector(root => root)
+    const dispatch = useDispatch()
     const settings = {
         dots: true,
         infinite: true,
@@ -21,6 +23,10 @@ const Home = () => {
         slidesToScroll: 1,
         autoplay: true
     };
+
+    useEffect(() => {
+        dispatch(getproduct());
+    },[])
     return (
         <div className="container mt-4">
             <Slider {...settings}>
@@ -31,7 +37,7 @@ const Home = () => {
             </Slider>
             <div className="row mt-5">
                 {
-                    product?.map((p, idx) => <CardProducts product={p} key={idx} />)
+                    product?.data?.map((p, idx) => <CardProducts product={p} key={idx} />)
                 }
             </div>
         </div>
