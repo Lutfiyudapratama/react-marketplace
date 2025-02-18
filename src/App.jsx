@@ -7,6 +7,7 @@ import store from './redux/store'
 import Cart from './pages/Cart'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import Dasboard from './pages/Dasboard'
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <Route path='/profile' element={<Profile />} />
           <Route path='/Login' element={<Login />} />
           <Route path='/Register' element={<Register />} />
+          <Route path='/dasboard' element={<Dasboard />} />
           {/* <Route path='/profile' element={<Profile />} /> */}
         </Routes>
       </BrowserRouter>

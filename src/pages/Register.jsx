@@ -1,13 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { registerSubmit } from "../redux/UserSlice";
+import Swal from "sweetalert2";
+import { redirect } from "react-router-dom";
 
 const Register = () => {
     const {register, handleSubmit} = useForm();
     const dispatch = useDispatch()
     const onSubmit = (value) => dispatch(registerSubmit(value))
     const registerState = useSelector((data) => data?.user)
+    const registerstate = useSelector((data) => data?.user)
+
+useEffect(() => {
+    if(registerState?.message !== null){
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `${registerstate?.message}`,
+            showConfirmButton: false,
+            timer: 1500
+          }).then(() => redirect("/login"));
+          return;
+    }
+},[registerstate])
     return (
         <div className="container bg-dark my-5 p-5">
         <span className="text-danger">{
